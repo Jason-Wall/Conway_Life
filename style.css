@@ -5,8 +5,7 @@ body{
     font-family: roboto, sans-serif;
     color: #303030;
 }
-
-.header-space{
+.header_space{
     display: flex;
     justify-content: space-between;
     
@@ -15,6 +14,6 @@ body{
     color: #d2fdff;
 }
 
-.main-space{
+.main_space{
     background-color: #fbe8a6
 }
