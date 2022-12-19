@@ -1,7 +1,5 @@
 body{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     font-family: roboto, sans-serif;
     color: #303030;
 }
@@ -9,33 +7,29 @@ body{
     display: flex;
     justify-content: space-between;
     
-
     background-color: #303c6c;
     color: #d2fdff;
 }
 
 .main_space{
     background-color: #fbe8a6
+    
 }
 
-.game_space{
+#game_space{
+    margin: 0 5vw;
     display: flex;
     flex-direction: column;
-
-    width: 60vh;
-    height: 60vh;
+    align-content: center;
 }
 
 .row{
-    flex: 1;
     display: flex;
 }
 
 .cell{
-    flex: 1 1 50;
-    width: 50px;
-    height: 50px;
-    text-align: center;
+    flex: auto;
+    aspect-ratio: 1/1;
     border: #303030 solid 1px;
-    margin 2 px;
+    margin: 1px;
 }
