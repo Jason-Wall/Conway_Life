@@ -17,3 +17,25 @@ body{
 .main_space{
     background-color: #fbe8a6
 }
+
+.game_space{
+    display: flex;
+    flex-direction: column;
+
+    width: 60vh;
+    height: 60vh;
+}
+
+.row{
+    flex: 1;
+    display: flex;
+}
+
+.cell{
+    flex: 1 1 50;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border: #303030 solid 1px;
+    margin 2 px;
+}

@@ -14,10 +14,19 @@ makeGrid(gridSize);
 // }
 
 function makeGrid(grid){
+let n = 0;
+const row = [grid];
+const cell = [grid*grid];
 for (let i = 0; i < grid; i++){
-    const row = game_space.appendChild(document.createElement('div'));
+    row[i] = document.createElement('div');
+    row[i].classList.add('row');
+    game_space.appendChild(row[i]);
     for (let j = 0; j < grid; j++){
-        const cell = row.appendChild(document.createElement('div'));
+        cell[n] = document.createElement('div');
+        row[i].appendChild(cell[n]);
+        cell[n].textContent = n;
+        cell[n].classList.add('cell');
+        n++;
     }
 }
 }
