@@ -5,15 +5,16 @@ let gridSize = 10;
 makeGrid(gridSize);
 
 //Test cases
-document.getElementById(12).classList.add('active');
+document.getElementById(2).classList.add('active');
 document.getElementById(13).classList.add('active');
 document.getElementById(22).classList.add('active');
 document.getElementById(24).classList.add('active');
 document.getElementById(25).classList.add('active');
-
+// End test cases
+let state = boardstate();
 
 function makeGrid(grid){
-    let n = 0;
+    let n = 1;
     const row = [grid];
     const cell = [grid*grid];
     for (let i = 0; i < grid; i++){
@@ -37,16 +38,37 @@ function boardstate(){
     let activeCells = [];
     for (i in cellsArr){
         if (cellsArr[i].classList.contains('active')){
-            activeCells.push(i);
+            activeCells.push(parseInt(+i+1));
         }
     }
     return(activeCells);
 }
 
 function changestatus(cellid){
-    console.log(cellid);
     document.getElementById(cellid).classList.toggle('active');
 }
 
+function gamelogic(grid,boardstate){
+const cellCount = grid*grid;
+const newboardlive=[];
+const newboarddie=[];
+for (let i = 1; i <= cellCount; i++){
+    let neighbor = 0;
+    if(boardstate.includes(+i-1)){neighbor++};
+    if(boardstate.includes(+i+1)){neighbor++};
+    if(boardstate.includes(+i-grid)){neighbor++};
+    if(boardstate.includes(+i-grid+1)){neighbor++};
+    if(boardstate.includes(+i-grid-1)){neighbor++};
+    if(boardstate.includes(+i+grid)){neighbor++};
+    if(boardstate.includes(+i+grid+1)){neighbor++};
+    if(boardstate.includes(+i+grid-1)){neighbor++};
 
+    console.log(neighbor);
+    if (neighbor<=1 || neighbor>=4){newboarddie.push(i)};
+    if (neighbor===3){newboardlive.push(parseInt(i))};
+}
+console.log(boardstate);
+console.log(newboardlive);
+console.log(newboarddie);
+}
 
