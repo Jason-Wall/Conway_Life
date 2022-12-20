@@ -12,8 +12,7 @@ body{
 }
 
 .main_space{
-    background-color: #fbe8a6
-    
+    background-color: #fbe8a6;
 }
 
 #game_space{
@@ -25,11 +24,17 @@ body{
 
 .row{
     display: flex;
+    /* flex: auto; */
 }
 
 .cell{
     flex: auto;
+    min-width: 20px;
     aspect-ratio: 1/1;
     border: #303030 solid 1px;
     margin: 1px;
+}
+
+.active{
+    background-color: #303c6c;
 }
