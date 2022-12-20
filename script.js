@@ -23,9 +23,9 @@ function makeGrid(grid){
         for (let j = 0; j < grid; j++){
             cell[n] = document.createElement('div');
             row[i].appendChild(cell[n]);
-            // cell[n].textContent = n;
             cell[n].classList.add('cell')
             cell[n].id = n;
+            cell[n].setAttribute("onclick","changestatus("+n+")")
             n++;
         }
     }
@@ -43,7 +43,10 @@ function boardstate(){
     return(activeCells);
 }
 
-
+function changestatus(cellid){
+    console.log(cellid);
+    document.getElementById(cellid).classList.toggle('active');
+}
 
 
 
