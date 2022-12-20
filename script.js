@@ -11,6 +11,7 @@ document.getElementById(22).classList.add('active');
 document.getElementById(24).classList.add('active');
 document.getElementById(25).classList.add('active');
 // End test cases
+
 let state = boardstate();
 
 function makeGrid(grid){
@@ -64,11 +65,26 @@ for (let i = 1; i <= cellCount; i++){
     if(boardstate.includes(+i+grid-1)){neighbor++};
 
     console.log(neighbor);
-    if (neighbor<=1 || neighbor>=4){newboarddie.push(i)};
+    if (neighbor<=1 || neighbor>=4){newboarddie.push(parseInt(i))};
     if (neighbor===3){newboardlive.push(parseInt(i))};
+    updateboard(newboardlive, newboarddie);
+
 }
 console.log(boardstate);
 console.log(newboardlive);
 console.log(newboarddie);
 }
 
+function updateboard(newboardlive, newboarddie){
+   newboardlive.forEach(cell => {
+    document.getElementById(cell).classList.add('active');
+   });
+   newboarddie.forEach(cell => {
+    document.getElementById(cell).classList.remove('active');
+   });
+}
+
+function rungame(){
+let state = boardstate();
+gamelogic(gridSize,state);
+}
