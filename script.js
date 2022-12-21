@@ -5,52 +5,72 @@ let gridSize = 10;
 makeGrid(gridSize);
 
 //Test cases
-document.getElementById(2).classList.add('active');
-document.getElementById(13).classList.add('active');
-document.getElementById(22).classList.add('active');
-document.getElementById(24).classList.add('active');
-document.getElementById(25).classList.add('active');
+document.getElementById("1,1").classList.add('active');
+document.getElementById("2,10").classList.add('active');
+document.getElementById("5,1").classList.add('active');
+document.getElementById("1,4").classList.add('active');
+document.getElementById("10,5").classList.add('active');
 // End test cases
 
 let state = boardstate();
 
 function makeGrid(grid){
-    let n = 1;
     const row = [grid];
-    const cell = [grid*grid];
-    for (let i = 0; i < grid; i++){
+    const cell = [grid,grid];
+    for (let i = 1; i <= grid; i++){
         row[i] = document.createElement('div');
         row[i].classList.add('row');
         game_space.appendChild(row[i]);
-        for (let j = 0; j < grid; j++){
-            cell[n] = document.createElement('div');
-            row[i].appendChild(cell[n]);
-            cell[n].classList.add('cell')
-            cell[n].id = n;
-            cell[n].setAttribute("onclick","changestatus("+n+")")
-            n++;
+        for (let j = 1; j <= grid; j++){
+            cell[i,j] = document.createElement('div');
+            row[i].appendChild(cell[i,j]);
+            cell[i,j].classList.add('cell');
+            cell[i,j].id = i+","+j;
+            cell[i,j].setAttribute("onclick","changestatus("+i+","+j+")");
         }
     }
 }
 
 function boardstate(){
-    const allCells = document.querySelectorAll(".cell");
-    let cellsArr = [... allCells];
     let activeCells = [];
-    for (i in cellsArr){
-        if (cellsArr[i].classList.contains('active')){
-            activeCells.push(parseInt(+i+1));
-        }
+    //Main board:
+    for (let i = 1; i <= gridSize; ++i){
+        for(let j = 1; j<= gridSize; ++j){
+            let cell = document.getElementById(i+","+j);
+            if (cell.classList.contains('active')){
+                activeCells.push(cell.id);
+            }
+        }        
     }
+    //Boundary conditions - Left
+    for (let i = 1; i<=gridSize; i++){
+        let testid = i+","+1;
+        if (activeCells.includes(testid)){activeCells.push(i+","+(+gridSize+1))};
+    }
+    //Boundary conditions - Right
+    for (let i = 1; i<=gridSize; i++){
+        let testid = i+","+gridSize;
+        if (activeCells.includes(testid)){activeCells.push(i+","+0)};
+    }
+    //Boundary conditions - Top
+    for (let j = 1; j<=gridSize; j++){
+        let testid = 1+","+j;
+        if (activeCells.includes(testid)){activeCells.push((+gridSize+1)+","+j)};
+    }
+       //Boundary conditions - Bottom
+       for (let j = 1; j<=gridSize; j++){
+        let testid = gridSize+","+j;
+        if (activeCells.includes(testid)){activeCells.push(0+","+j)};
+    }
+    // console.log(activeCells);
     return(activeCells);
 }
 
-function changestatus(cellid){
-    document.getElementById(cellid).classList.toggle('active');
+function changestatus(i,j){
+    document.getElementById(i+","+j).classList.toggle('active');
 }
 
-function gamelogic(grid,boardstate){
-const cellCount = grid*grid;
+function gamelogic(grid,state){
 const newboardlive=[];
 const newboarddie=[];
 for (let i = 1; i <= cellCount; i++){
