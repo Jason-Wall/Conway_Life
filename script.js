@@ -1,8 +1,11 @@
 // TOP LEVEL CODE
 // Populate the game space with a grid on page load
 const game_space = document.getElementById('game_space');
-let gridSize = 10;
-makeGrid(gridSize);
+let grid = 15;
+let gamespace = document.getElementById('game_space');
+let cellSize = gamespace.offsetHeight/(grid)-2;
+makeGrid();
+
 
 //Test cases
 document.getElementById("5,5").classList.add('active');
@@ -16,7 +19,7 @@ document.getElementById("5,6").classList.add('active');
 
 let state = boardstate();
 
-function makeGrid(grid){
+function makeGrid(){
     const row = [grid];
     const cell = [grid,grid];
     for (let i = 1; i <= grid; i++){
@@ -29,15 +32,19 @@ function makeGrid(grid){
             cell[i,j].classList.add('cell');
             cell[i,j].id = i+","+j;
             cell[i,j].setAttribute("onclick","changestatus("+i+","+j+")");
+            cell[i,j].style.width = cellSize+"px";
+            cell[i,j].style.height = cellSize+"px";
+
         }
     }
 }
 
+
 function boardstate(){
     let activeCells = [];
     //Main board:
-    for (let i = 1; i <= gridSize; i++){
-        for(let j = 1; j<= gridSize; j++){
+    for (let i = 1; i <= grid; i++){
+        for(let j = 1; j<= grid; j++){
             let cell = document.getElementById(i+","+j);
             if (cell.classList.contains('active')){
                 activeCells.push(cell.id);
@@ -45,23 +52,23 @@ function boardstate(){
         }        
     }
     //Boundary conditions - Left
-    for (let i = 1; i<=gridSize; i++){
+    for (let i = 1; i<=grid; i++){
         let testid = i+","+1;
-        if (activeCells.includes(testid)){activeCells.push(i+","+(+gridSize+1))};
+        if (activeCells.includes(testid)){activeCells.push(i+","+(+grid+1))};
     }
     //Boundary conditions - Right
-    for (let i = 1; i<=gridSize; i++){
-        let testid = i+","+gridSize;
+    for (let i = 1; i<=grid; i++){
+        let testid = i+","+grid;
         if (activeCells.includes(testid)){activeCells.push(i+","+0)};
     }
     //Boundary conditions - Top
-    for (let j = 1; j<=gridSize; j++){
+    for (let j = 1; j<=grid; j++){
         let testid = 1+","+j;
-        if (activeCells.includes(testid)){activeCells.push((+gridSize+1)+","+j)};
+        if (activeCells.includes(testid)){activeCells.push((+grid+1)+","+j)};
     }
        //Boundary conditions - Bottom
-       for (let j = 1; j<=gridSize; j++){
-        let testid = gridSize+","+j;
+       for (let j = 1; j<=grid; j++){
+        let testid = grid+","+j;
         if (activeCells.includes(testid)){activeCells.push(0+","+j)};
     }
     return(activeCells);
@@ -71,7 +78,7 @@ function changestatus(i,j){
     document.getElementById(i+","+j).classList.toggle('active');
 }
 
-function gamelogic(grid,state){
+function gamelogic(state){
 const newboardlive=[];
 const newboarddie=[];
 for (let i = 1; i <= grid; i++){
@@ -108,5 +115,5 @@ function updateboard(newboardlive, newboarddie){
 
 function rungame(){
 let state = boardstate();
-gamelogic(gridSize,state);
+gamelogic(state);
 }
