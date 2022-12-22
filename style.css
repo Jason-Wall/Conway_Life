@@ -1,18 +1,31 @@
 body{
-    
+    margin: 0;
+    padding: 0;
     font-family: roboto, sans-serif;
     color: #303030;
+    background-color: #fbe8a6;
 }
-.header_space{
+.header{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin-bottom: 10px;
     
     background-color: #303c6c;
     color: #d2fdff;
+    font-size: 60px;
 }
 
 .main_space{
     background-color: #fbe8a6;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.info{
+    padding: 10px;
+    background-color: #f4976c;
+    border-radius: 10px;
 }
 
 #game_space{
@@ -31,7 +44,7 @@ body{
 .cell{
     aspect-ratio: 1/1;
     box-sizing: border-box;
-    border: #ecde8d solid 1px;
+    border: #aaa96e41 solid 1px;
     border-radius: 2px;
 
     margin: 0.5px;
