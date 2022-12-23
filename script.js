@@ -1,20 +1,31 @@
 // TOP LEVEL CODE
 // Populate the game space with a grid on page load
 const game_space = document.getElementById('game_space');
-let grid = 15;
+const slider = document.getElementById('gridslider');
+const gridout = document.getElementById('gridsizeoutput')
+let grid = slider.value;
+gridout.textContent="Grid Size: "+grid+" x "+grid;
 let gamespace = document.getElementById('game_space');
-let cellSize = gamespace.offsetHeight/(grid)-2;
+
 makeGrid();
+
+randomboard();
+let state = boardstate();
 
 let runinterval;
 let flaginterval = false;
-randomboard();
 
-// End test cases
-
-let state = boardstate();
+slider.oninput = function(){
+    boardstate();
+    game_space.innerHTML="";
+    grid = this.value;
+    makeGrid();
+    // updateboard();
+    gridout.textContent="Grid Size: "+grid+" x "+grid;
+}
 
 function makeGrid(){
+    let cellSize = gamespace.offsetHeight/(grid)-2;
     const row = [grid];
     const cell = [grid,grid];
     for (let i = 1; i <= grid; i++){
@@ -33,7 +44,6 @@ function makeGrid(){
         }
     }
 }
-
 
 function boardstate(){
     let activeCells = [];
@@ -130,6 +140,7 @@ function randomboard(){
         }
     updateboard(newboardlive,[]);
 }
+
 function loopgame(){
     if (flaginterval==false){
         runinterval = setInterval(rungame, 500);

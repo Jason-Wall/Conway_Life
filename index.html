@@ -24,7 +24,10 @@
                 <button onclick="randomboard()">Randomize</button>
             </div>
             <button onclick="loopgame()">Play/ Pause</button>
-            <div>SLIDER SPACE</div>
+            <div class="slidecontainer">
+                <input type="range" min="10" max="50" value="25" class="slider" id="gridslider">
+                <div id="gridsizeoutput"></div>
+            </div>
         </div>
         <div id="game_space"></div>
     </div>
