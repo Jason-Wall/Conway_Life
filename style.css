@@ -2,21 +2,22 @@ body{
     margin: 0;
     padding: 0;
     font-family: roboto, sans-serif;
-    color: #303030;
-    background-color: #fbe8a6;
+    color: #d2fdff;
+    background-color: #626c8b;
 }
 .header{
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
     
     background-color: #303c6c;
-    color: #d2fdff;
     font-size: 60px;
+    font-weight: 800;
 }
 
 .main_space{
-    background-color: #fbe8a6;
+    background-color: #626c8b;
     display: flex;
     justify-content: center;
     gap: 50px;
@@ -24,17 +25,18 @@ body{
 
 .info{
     padding: 10px;
-    background-color: #f4976c;
+    max-width: 400px;
+    background-color:  #303c6c;
     border-radius: 10px;
 }
 
 #game_space{
-    /* margin: 0 5vw; */
     height: 600px;
     aspect-ratio: 1/1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .row{
@@ -44,12 +46,39 @@ body{
 .cell{
     aspect-ratio: 1/1;
     box-sizing: border-box;
-    border: #aaa96e41 solid 1px;
+    border: #bab8d44b solid 1px;
     border-radius: 2px;
 
     margin: 0.5px;
 }
 
 .active{
+    background-color:#d2fdffc2;
+}
+
+.buttonbox{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+button{
+    flex: 1 0 auto;
+    padding: 10px;
+
     background-color: #303c6c;
+    color: #d2fdff;
+    border: #d2fdff solid 2px;
+    border-radius: 5px;
+
+    font-size: 20px;
+    text-align: center;
+}
+
+.slidecontainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 10px;
+    text-align: center;
 }

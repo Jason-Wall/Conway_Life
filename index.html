@@ -19,11 +19,11 @@
                 <li>Any live cell with more than three live neighbours dies, as if by overpopulation;</li>
                 <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
             </ul>
-            <div>
+            <div class="buttonbox">
                 <button onclick="clearstate()">Clear Board</button>
                 <button onclick="randomboard()">Randomize</button>
+                <button onclick="loopgame()">Play/ Pause</button>
             </div>
-            <button onclick="loopgame()">Play/ Pause</button>
             <div class="slidecontainer">
                 <input type="range" min="10" max="50" value="25" class="slider" id="gridslider">
                 <div id="gridsizeoutput"></div>
