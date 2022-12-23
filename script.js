@@ -6,14 +6,9 @@ let gamespace = document.getElementById('game_space');
 let cellSize = gamespace.offsetHeight/(grid)-2;
 makeGrid();
 
-
-//Test cases
-document.getElementById("5,5").classList.add('active');
-document.getElementById("4,5").classList.add('active');
-document.getElementById("6,5").classList.add('active');
-document.getElementById("5,4").classList.add('active');
-document.getElementById("5,6").classList.add('active');
-
+let runinterval;
+let flaginterval = false;
+randomboard();
 
 // End test cases
 
@@ -113,7 +108,38 @@ function updateboard(newboardlive, newboarddie){
    });
 }
 
+function clearstate(){
+    let newboarddie=[];
+    for (let i = 1; i <= grid; i++){
+        for(let j = 1; j<= grid; j++)
+            {newboarddie.push(i+","+j)
+        }
+    }
+
+    updateboard([],newboarddie);
+}
+
+function randomboard(){
+    clearstate();
+    let newboardlive=[];
+    for (let i = 1; i <= grid; i++){
+        for(let j = 1; j<= grid; j++){
+            if (Math.random()>0.7){
+                newboardlive.push(i+","+j)}
+            }
+        }
+    updateboard(newboardlive,[]);
+}
+function loopgame(){
+    if (flaginterval==false){
+        runinterval = setInterval(rungame, 500);
+        flaginterval=true;
+    }else {clearInterval(runinterval);
+        flaginterval=false;
+    }
+}
+
 function rungame(){
-let state = boardstate();
-gamelogic(state);
+    let state = boardstate();
+    gamelogic(state);
 }

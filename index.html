@@ -8,13 +8,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header"> Conways Game of Life</div>
+    <div class="header"> Conway's Game of Life</div>
     <div class="main_space">
-        <div class="info">Info - Description of the game, rules, origin, etc.</div>
+        <div class="info">
+            <div>The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.<br><br></div>
+            <div>The game follows a simple set of rules:</div>
+            <ul>
+                <li>Any live cell with fewer than two live neighbours dies, as if by underpopulation;</li>
+                <li>Any live cell with two or three live neighbours lives on to the next generation;</li>
+                <li>Any live cell with more than three live neighbours dies, as if by overpopulation;</li>
+                <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+            </ul>
+            <div>
+                <button onclick="clearstate()">Clear Board</button>
+                <button onclick="randomboard()">Randomize</button>
+            </div>
+            <button onclick="loopgame()">Play/ Pause</button>
+            <div>SLIDER SPACE</div>
+        </div>
         <div id="game_space"></div>
     </div>
     <script src="script.js"></script>
-    <button onclick="rungame()">Click</button>
     
 </body>
 </html>
